@@ -2,6 +2,7 @@
     "name": "jcchavezs/dd-opentracing-symfony",
     "description": "An OpenTracing + DataDog library for instrumenting a Symfony application",
     "type": "library",
+    "license": "GPL-3.0",
     "require": {
         "symfony/http-kernel": "~2.7|~3.0",
         "jcchavezs/dd-opentracing": "^0.3.0",
