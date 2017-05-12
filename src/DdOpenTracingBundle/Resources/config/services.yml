@@ -1,0 +1,41 @@
+services:
+  dd_open_tracing.tracing_starter:
+    class: DdOpenTracingBundle\Listeners\TracingStarter
+    arguments:
+      - "@event_dispatcher"
+      - "@dd_open_tracing.tracer"
+      - "%kernel.environment%"
+    tags:
+      - { name: kernel.event_listener, event: kernel.controller }
+
+  dd_open_tracing.tracing_terminator:
+    class: DdOpenTracingBundle\Listeners\TracingTerminator
+    arguments:
+      - "@dd_open_tracing.tracer"
+      - "@event_bus"
+    tags:
+      - { name: kernel.event_listener, event: kernel.terminate }
+      - { name: kernel.event_listener, event: kernel.exception }
+
+  dd_open_tracing.encoder_factory.json:
+    class: DdTrace\Encoders\JsonFactory
+
+  dd_open_tracing.encoder_factory.msgpack:
+    class: DdTrace\Encoders\MsgPackFactory
+
+  dd_open_tracing.encoder_factory:
+    alias: "%dd_open_tracing.encoder_factory_class%"
+
+  dd_open_tracing.tracer:
+    class: DdOpenTracing\Tracer
+    arguments:
+      - "@logger"
+      - "@dd_open_tracing.http_client"
+      - "@dd_open_tracing.encoder_factory"
+      - "@dd_open_tracing.transport"
+    factory: [DdOpenTracingBundle\Traces\TracerFactory, 'build']
+
+  dd_open_tracing.listener.tracer_flusher:
+        class: DdOpenTracingBundle\Listeners\TracingFlusher
+        tags:
+            - { name: event_subscriber, subscribes_to: DdOpenTracingBundle\Events\TracingTerminated }

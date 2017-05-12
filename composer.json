@@ -1,0 +1,28 @@
+{
+    "name": "jcchavezs/dd-opentracing-symfony",
+    "description": "An OpenTracing + DataDog library for instrumenting a Symfony application",
+    "type": "library",
+    "require": {
+        "symfony/http-kernel": "~2.7|~3.0",
+        "jcchavezs/dd-opentracing": "^0.3.0",
+        "simple-bus/message-bus": "^2.2",
+        "symfony/config": "~2.7|~3.0",
+        "symfony/dependency-injection": "~2.7|~3.0"
+    },
+    "authors": [
+        {
+            "name": "José Carlos Chávez",
+            "email": "jcchavezs@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require-dev": {
+        "phpunit/phpunit": "~5.7.19"
+    },
+    "autoload": {
+        "psr-4": {"DdOpenTracingBundle\\": "./src/DdOpenTracingBundle/"}
+    },
+    "autoload-dev": {
+        "psr-4": {"DdOpenTracingBundleTests\\": "./tests/"}
+    }
+}
