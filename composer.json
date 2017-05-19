@@ -5,7 +5,7 @@
     "license": "GPL-3.0",
     "require": {
         "symfony/http-kernel": "~2.7|~3.0",
-        "jcchavezs/dd-opentracing": "^0.3.0",
+        "jcchavezs/dd-opentracing": "^0.3.1",
         "simple-bus/message-bus": "^2.2",
         "symfony/config": "~2.7|~3.0",
         "symfony/dependency-injection": "~2.7|~3.0"
