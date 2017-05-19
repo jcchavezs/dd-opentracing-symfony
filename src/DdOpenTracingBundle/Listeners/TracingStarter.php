@@ -44,7 +44,7 @@ final class TracingStarter
 
     private function startTracingForMasterRequest(FilterControllerEvent $event)
     {
-        $controllerAction = $event->getRequest()->attributes['_controller'];
+        $controllerAction = $event->getRequest()->attributes->get('_controller');
         $actionName = substr($controllerAction, strpos($controllerAction, '::') + 1);
 
         if ($event->getController() instanceof TraceableController) {

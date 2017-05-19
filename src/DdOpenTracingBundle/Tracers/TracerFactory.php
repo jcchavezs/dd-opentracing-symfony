@@ -14,18 +14,23 @@ use Psr\Log\LoggerInterface;
 
 class TracerFactory
 {
+    private $client;
+    private $logger;
+    private $encoderFactory;
+    private $transport;
+
     public function __construct(
         LoggerInterface $logger,
         ClientInterface $client,
         EncoderFactory $encoderFactory,
         Transport $transport
-
     ) {
         $this->client = $client;
         $this->logger = $logger;
         $this->encoderFactory = $encoderFactory;
         $this->transport = $transport;
     }
+
     public function build()
     {
         $transport = new Http($this->client, $this->logger, $this->encoderFactory);
