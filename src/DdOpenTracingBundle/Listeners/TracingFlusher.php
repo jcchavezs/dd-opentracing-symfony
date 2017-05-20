@@ -35,6 +35,8 @@ final class TracingFlusher
                 return;
             }
 
+            usleep((self::MAX_NUMBER_OF_ATTEMPTS - $numberOfAttempts) * 1000);
+
             $this->flushTraces($tracer, $numberOfAttempts - 1);
         }
     }

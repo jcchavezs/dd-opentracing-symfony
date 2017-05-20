@@ -9,6 +9,8 @@ final class TracingTerminated implements NamedMessage
 {
     private $tracer;
 
+    const MESSAGE_NAME = 'tracing_terminated';
+
     private function __construct(Tracer $tracer)
     {
         $this->tracer = $tracer;
@@ -26,6 +28,6 @@ final class TracingTerminated implements NamedMessage
 
     public static function messageName()
     {
-        return 'tracing_terminated';
+        return self::MESSAGE_NAME;
     }
 }
